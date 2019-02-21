@@ -93,6 +93,7 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 『${prefix}bk / رسالة جماعيه مع』
 『${prefix}rolebc <everyone or @role> / راسال رساله جماعيه لرتبه محدده』
 『${prefix}role @user <rank> / لأعطاء رتبة لعضو معين』
+『${prefix}autorole  / اوتو رول اول لما الواحد يدخل يعطيه رتبة 』  
 『${prefix}roleremove @user <rank> / لازالة الرتبة من شخص معين』
 『${prefix}give all <rank> / لأعطاء رتبة للجميع』
 『${prefix}give humans <rank> / لأعطاء رتبة للاشخاص فقط』
@@ -226,13 +227,13 @@ const days = millis / 1000 / 60 / 60 / 24;
 let roles = client.guilds.get(message.guild.id).roles.map(r => r.name);
 var embed  = new Discord.RichEmbed()
 .setAuthor(message.guild.name, message.guild.iconURL)
-.addField("**🆔 Server ID:**", message.guild.id,true)
-.addField("**📅 Created On**", message.guild.createdAt.toLocaleString(),true)
-.addField("**👑 Owned by**",`${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
-.addField("**👥 Members**",`[${message.guild.memberCount}]`,true)
-.addField('**💬 Channels **',`**${message.guild.channels.filter(m => m.type === 'text').size}**` + ' text | Voice  '+ `**${message.guild.channels.filter(m => m.type === 'voice').size}** `,true)
-.addField("**🌍 Others **" , message.guild.region,true)
-.addField("**🔐 Roles **",`**[${message.guild.roles.size}]** Role `,true)
+.addField("**🆔 ايدي السيرفر:**", message.guild.id,true)
+.addField("**📅 صنع في**", message.guild.createdAt.toLocaleString(),true)
+.addField("**👑 الاونر شيب**",`${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
+.addField("**👥 الاعبين**",`[${message.guild.memberCount}]`,true)
+.addField('**💬 الرومات **',`**${message.guild.channels.filter(m => m.type === 'text').size}**` + ' text | Voice  '+ `**${message.guild.channels.filter(m => m.type === 'voice').size}** `,true)
+.addField("**🌍 نوع السيرفر **" , message.guild.region,true)
+.addField("**🔐 الرتب **",`**[${message.guild.roles.size}]** Role `,true)
 .setColor('#000000')
 message.channel.sendEmbed(embed)
 
@@ -3134,7 +3135,7 @@ client.on("message", (message) => {
         if (!message.channel.type =="text") return;
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("**Sorry, You Don't Have `MANAGE_CHANNELS` permission**")
         if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**I Don't Have `MANAGE_CHANNELS` Permission**").then(msg => msg.delete(6000))
-        if (!message.mentions.members.first()) return message.reply("**Mention a user!🤔**")
+        if (!message.mentions.members.first()) return message.reply("**منشن الاعب!🤔**")
         message.guild.channels.forEach(c => {
             c.overwritePermissions(message.mentions.members.first().id, {
                 SEND_MESSAGES : false,
@@ -3145,7 +3146,7 @@ client.on("message", (message) => {
         fs.writeFile("json.json", JSON.stringify(json), err => {
             if (err) console.error(err);
         });
-        message.channel.send(`** <@${message.mentions.members.first().id}> Muted in the server!🤐**`);
+        message.channel.send(`** <@${message.mentions.members.first().id}> تم اعطائه ميوت!🤐**`);
         break;
         case "unmut" : 
         if (!message.channel.type =="text") return;
@@ -3424,7 +3425,7 @@ const channel = rWlc[message.guild.id].role
     let newrole = message.content.split(' ').slice(1).join(" ")//Toixc Codes
     if(!newrole) return message.reply(`**${prefix}autorole <rule name>**`)//Toixc Codes
     rWlc[message.guild.id].role = newrole
-    message.channel.send(`**${message.guild.name}'s rule has been changed to ${newrole}**`);//Toixc Codes
+    message.channel.send(`**${message.guild.name}'s تم تغير الرتبة وجعلها ${newrole}**`);//Toixc Codes
   }
 
 
