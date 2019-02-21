@@ -3398,9 +3398,6 @@ var mentionned = message.mentions.members.first();
 .addField('♨| Playing:','**'+y+'**' , true)
 .addField('🤖| نوع حسابك:',"**"+ w + "**",true)    
 .addField('📛| الكود حق حسابك:',"**#" +  `${z.discriminator}**`,true)
-.addField('**التاريح الذي انشئ فيه حسابك | 📆 **: ' ,year + "-"+ month +"-"+ day)    
-.addField("**تاريخ دخولك للسيرفر| ⌚   :**", message.member.joinedAt.toLocaleString())    
- 
 .addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString())
 .addField("**اخر رسالة لك | 💬  :**", message.author.lastMessage)            
 .setFooter(message.author.username, message.author.avatarURL)  
