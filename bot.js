@@ -34,20 +34,6 @@ var ti={}
 ,attentions={};
 
 client.on('ready', function(){
-    var ms = 60000 ;
-    var setGame = [`${client.guilds.size} Server`,'G.help','Type G.help',`${client.users.size} Members`,'G.inv','By: Hosam | BaronTube'];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/barontube`);
-    }, ms);
     console.log(` ╔═══╗──╔╗ |> Name: ${client.user.username}`);
  console.log(` ║╔═╗║──║║ |> Servers: ${client.guilds.size}`);
  console.log(` ║║─╚╬══╣║╔══╦╗╔╦╗─╔╗ |> Members: ${client.users.size}`);
@@ -94,8 +80,6 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 『${prefix}avatar/صورتك او صورة الي تمنشنو』
 『${prefix}embed/يكرر الي تقولو بشكل حلو』 
 『${prefix}emoji <any things>/لتحويل اي كلمه تقولها الي ايموجي』
-『${prefix}inv/لدعوة البوت الى سيرفرك』
-『${prefix}support/سيرفر الدعم』
 『${prefix}contact/ارسال اقتراح او لمراسلة صاحب البوت』
 **
   `
