@@ -3410,4 +3410,36 @@ antispam(client, {
   time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
 
+const rWlc = {}
+client.on('message', message => {//Toixc Codes
+var prefix = "-";//البرفكس //Toixc Codes
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+   if(!rWlc[message.guild.id]) rWlc[message.guild.id] = {//Toixc Codes
+    role: "member"//Toixc Codes
+  }//Toixc Codes
+const channel = rWlc[message.guild.id].role
+  if (message.content.startsWith(prefix + "autorole")) {//Toixc Codes
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newrole = message.content.split(' ').slice(1).join(" ")//Toixc Codes
+    if(!newrole) return message.reply(`**${prefix}autorole <rule name>**`)//Toixc Codes
+    rWlc[message.guild.id].role = newrole
+    message.channel.send(`**${message.guild.name}'s rule has been changed to ${newrole}**`);//Toixc Codes
+  }
+
+
+client.on("guildMemberAdd", member => {
+      if(!rWlc[member.guild.id]) rWlc[member.guild.id] = {
+    role: "member"
+  }
+  const Role = rWlc[member.guild.id].role
+    const sRole = rWlc[member.guild.id].role
+    let Rrole = member.guild.roles.find('name', sRole);//Toixc Codes
+  member.addRole(Rrole);//Toixc Codes
+ 
+      
+      
+      });//Toixc Codes
+});//Toixc Codes
+
 client.login(process.env.BOT_TOKEN)
