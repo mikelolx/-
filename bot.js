@@ -3345,7 +3345,6 @@ if(message.content === adminprefix + "restart") {
   });
 
 client.on('message', message => {
-  var prefix = "-"
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + 'id')) {
 var year = message.author.createdAt.getFullYear()
@@ -3358,21 +3357,21 @@ var z = message.author;
 }else {
 var z = message.mentions.users.first();
 }
- 
+
 let d = z.createdAt;          
 let n = d.toLocaleString();   
 let x;                       
 let y;                        
- 
+
 if (z.presence.game !== null) {
 y = `${z.presence.game.name}`;
 } else {
-y = "No Playing... |💤.";
+y = "No Playing...";
 }
 if (z.bot) {
-var w = 'بوت';
+var w = 'BOT';
 }else {
-var w = 'عضو';
+var w = 'MEMBER';
 }
 let embed = new Discord.RichEmbed()
 .setColor("#502faf")
@@ -3393,8 +3392,8 @@ let embed = new Discord.RichEmbed()
 message.channel.send({embed});
   if (!message) return message.reply('**ضع المينشان بشكل صحيح  ❌ **').catch(console.error);
  
+
 }
- 
 });
 
 var antispam = require("anti-spam");
