@@ -3259,4 +3259,66 @@ client.on('message', async message => {
     }
 });
 
+const replyForMention = [    "ايش تبي",    "سوي +help",    "احد ناداني؟",    "سم؟",    "كيفك",    "تمنشن بوت ياغبي؟",    "لا تزعجني",    "هلا"]
+client.on('message', message=> {
+    if (message.author.bot) return;
+    if (message.isMentioned(client.user))
+    {
+    message.reply(replyForMention);
+    }
+});
+
+client.on('message', message => {
+    if (message.content.startsWith("-رابط")) {
+        message.channel.createInvite({
+        thing: true,
+        maxUses: 5,
+        maxAge: 3600,
+    }).then(invite =>
+      message.author.sendMessage(invite.url)
+    )
+    const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+          .setDescription("تم أرسال الرابط برسالة خاصة")
+           .setAuthor(client.user.username, client.user.avatarURL)
+                 .setAuthor(client.user.username, client.user.avatarURL)
+                .setFooter('طلب بواسطة: ' + message.author.tag)
+
+      message.channel.sendEmbed(embed).then(message => {message.delete(10000)})
+              const Embed11 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        
+    .setDescription("** مدة الرابط : ساعه | عدد استخدامات الرابط : 5 **")
+      message.author.sendEmbed(Embed11)
+    }
+});
+
+client.on('message', message => {
+    let argresult = message.content.split(`).slice(1).join(' ');
+    if (message.content.startsWith(prefix + 'setStreaming')) {
+      if (!devs.includes(message.author.id)) return message.channel.send("<@521763526436585472> only this guy can do restart the bot so don't try again :wink:.");
+      message.delete();
+      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
+
+    } else if(message.content.startsWith(prefix + 'setWatching')) {
+        client.user.setActivity(argresult,{type: 'WATCHING'});
+
+      } else if(message.content.startsWith(prefix + 'setListening')) {
+        client.user.setActivity(argresult,{type: 'LISTENING'});
+
+      } else if(message.content.startsWith(prefix + 'setPlaying')) {
+        client.user.setActivity(argresult,{type: 'PLAYING'});
+
+      } else if(message.content.startsWith(prefix + 'setName')) {
+        client.user.setUsername(argresult);
+
+      } else if(message.content.startsWith(prefix + 'setAvatar')) {
+        client.user.setAvatar(argresult);
+
+
+      } else if(message.content.startsWith(prefix + 'setStatus')) {
+        if(!argresult) return message.channel.send('online,DND(Do not Distrub),`idle, invisible(Offline) 🎶 Select a situation');
+        client.user.setStatus(argresult);
+	});
+
 client.login(process.env.BOT_TOKEN)
