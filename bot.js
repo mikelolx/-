@@ -3453,13 +3453,9 @@ client.on("guildMemberAdd", member => {
       });//Toixc Codes
 });//Toixc Codes
 
-client.on('message', message => {
-     if (message.content === "-help") {
-      const embed = new Discord.RichEmbed()
- 
-  .setColor("RANDOM")
-  .addField('`تم الارسال في الخاص :ok_hand:  `')
-      }
-});
+client.on('message', msg => {
+    if(msg.content === '-help')
+    msg.reply('تم الارسال في الخاص :white_check_mark:')
+  });
 
 client.login(process.env.BOT_TOKEN)
