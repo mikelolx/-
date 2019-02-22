@@ -3482,4 +3482,39 @@ client.on('message', message => {
 
   });
 
+
+client.on('message', msg => {
+    if(msg.content === '-setWatching')
+    msg.reply('تم تغير الواتشنق بنجاح :white_check_mark:')
+  });
+
+
+client.on('message', msg => {
+    if(msg.content === '-setListening')
+    msg.reply('تم تغير الاستماع بنجاح :white_check_mark:')
+  });
+
+
+client.on('message', msg => {
+    if(msg.content === '-setPlaying')
+    msg.reply('تم تغير البلاينق بنجاح :white_check_mark:')
+  });
+
+
+client.on('message', msg => {
+    if(msg.content === '-setName')
+    msg.reply('تم تغير اسم البوت بنجاح :white_check_mark:')
+  });
+
+
+client.on('message', msg => {
+    if(msg.content === '-setAvatar')
+    msg.reply('تم تغير صورة البوت بنجاح :white_check_mark:')
+  });
+
+
+client.on('message', msg => {
+    if(msg.content === '-setStatus')
+    msg.reply('تم ا تغير حال البوت بنجاح :white_check_mark:')
+  });
 client.login(process.env.BOT_TOKEN)
