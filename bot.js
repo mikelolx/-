@@ -3405,7 +3405,7 @@ client.on('message',async message => {
  
  
   if(message.content.startsWith(prefix + "credit")) {
-  if(args[0] !== `${prefix}credit` && args[0] !== `${prefix} \`\`${`$credit`}\`\`.**`) return;
+  if(args[0] !== `${prefix}{`$credit`} && args[0] !== `${prefix} \`\`${`$credit`}\`\`.**`) return;
  
   if(args[2]) {
     if(isNaN(args[2])) return message.channel.send('**:heavy_multiplication_x:| هذه الخانة يجب ان تتكون من ارقام وليس احرف.**');
