@@ -2346,7 +2346,7 @@ const zead = [
    '*** انتظر الجزء الثاني عندما يوصل البوت 100 سيرفر , ساعدني في نشر البوت وادخل هذا السيرفر  ***'
 ];
  client.on('message', message => {
- if (message.content.startsWith('G.مريم')) {
+ if (message.content.startsWith('-مريم')) {
   var mariam= new Discord.RichEmbed()
   .setTitle("لعبة مريم ..")
   .setColor('RANDOM')
@@ -2439,7 +2439,7 @@ if(!message.channel.guild) return
 if (message.author.bot) return;
         if (!message.member.hasPermissions(['ADMINISTRATOR'])){
         message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
+    return message.reply(`** لا يسمح بنشر هناااا :angry: ! **`)
     }
 }
 });
@@ -2593,33 +2593,28 @@ client.on('message', message => {
 
 
 if (message.content.startsWith(prefix + 'playing')) {
-if (message.author.id !== '545245659834351634') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
 client.user.setGame(argresult);
     message.channel.sendMessage(`**${argresult}** : تم تغيير الحالة`)
 } else
 
 if (message.content.startsWith(prefix + 'streem')) {
-if (message.author.id !== '545245659834351634') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
 client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
     message.channel.sendMessage(`**${argresult}** :تم تغيير الحالة الى ستريمنج`)
 } else
 
 if (message.content.startsWith(prefix + 'setname')) {
-if (message.author.id !== '545245659834351634') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
   client.user.setUsername(argresult).then
       message.channel.sendMessage(`**${argresult}** : تم تغير الأسم`)
   return message.reply("**لا تستطيع تغير الأسم الا بعد ساعتين**");
 } else
 
 if (message.content.startsWith(prefix + 'setavatar')) {
-if (message.author.id !== '545245659834351634') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
 client.user.setAvatar(argresult);
     message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
 } else
 
 
 if (message.content.startsWith(prefix + 'watching')) {
-if (message.author.id !== '545245659834351634') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
     client.user.setActivity(argresult, {type : 'watching'});
  message.channel.sendMessage(`**${argresult}** : تم تغيير الووتشينق الى`)
 }
@@ -3058,11 +3053,11 @@ possibleInvites.push([inviteCount, exec]);
         console.log(e.stack);
       }
     }
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
+           if(!message.channel.guild) return message.reply('**هذا  للادارة فقط**');
      message.member.addRole(muterole);
     const embed500 = new Discord.RichEmbed()
       .setTitle("Muted Ads")
-            .addField(`**  You Have Been Muted **` , `**Reason : Sharing Another Discord Link**`)
+            .addField(`**  تم اعطائك ميوت **` , `**السبب :لانك تنشر سيرفرات**`)
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
             .setAuthor(message.author.username, message.author.avatarURL)
@@ -3167,7 +3162,7 @@ client.on("message", (message) => {
         if (!message.channel.type =="text") return;
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("**Sorry, You Don't Have `MANAGE_CHANNELS` permission**")
         if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**I Don't Have `MANAGE_CHANNELS` Permission**").then(msg => msg.delete(10000))
-        if (!message.mentions.members.first()) return message.reply("**Mention a user!🤔**")
+        if (!message.mentions.members.first()) return message.reply("**منشن الاعب!🤔**")
         if (!message.mentions.members.first()) return;
         message.guild.channels.forEach(c => {
             c.overwritePermissions(message.mentions.members.first().id, {
@@ -3209,35 +3204,6 @@ client.on('message',async message => {
   });
   }
   });
-
-client.on('message',async message => {
-  if(message.author.bot || message.channel.type === 'dm') return;
-  let args = message.content.split(' ');
-  let member = message.member;
-  let mention = message.mentions.users.first();
-  let guild = message.guild;
-  let author = message.author;
- 
-  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
-  tpoints[author.id].points += rPoints;
-  if(args[0] === `${hero.config.prefix}top`) {
-    let _voicePointer = 1;
-    let _textPointer = 1;
-    let _voiceArray = Object.values(vpoints);
-    let _textArray = Object.values(tpoints);
-    let _topText = as(_textArray, 'points', { reverse: true });
-    let _topVoice = as(_voiceArray, 'points', { reverse: true });;
-    let topRoyale = new Discord.RichEmbed();
-    topRoyale.setAuthor(message.author.username, message.author.avatarURL);
-    topRoyale.setTitle('^ " top');
-    //topRoyale.setThumbnail(message.guild.iconURL);
-    topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText.map(r => `**\`.${_textPointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).slice(0, 5), true);
-    topRoyale.addField(`**TOP 5 VOICE 🎙**`, _topVoice.map(r => `**\`.${_voicePointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).slice(0, 5), true);
-    message.channel.send(topRoyale).catch(e => {
-      if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
-    });
-  }
-});
 
 client.on("message", message => {
     var prefix = "-";
@@ -3283,56 +3249,7 @@ if(message.content === adminprefix + "restart") {
   
   });
 
- client.on('message', message => {
-          
 
-           if (message.content.startsWith(prefix + "id")) {
-           if (message.channel.id !== "547050310636535808") return;
-            
-            if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField('🔱| اسمك:',`**<@` + `${z.id}` + `>**`, true)
-.addField('🛡| ايدي:', "**"+ `${z.id}` +"**",true)
-.addField('♨| Playing:','**'+y+'**' , true)
-.addField('🤖| نوع حسابك:',"**"+ w + "**",true)    
-.addField('📛| الكود حق حسابك:',"**#" +  `${z.discriminator}**`,true)
-.addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString())
-.addField("**اخر رسالة لك | 💬  :**", message.author.lastMessage)            
-.setFooter(message.author.username, message.author.avatarURL)  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
-  
 var antispam = require("anti-spam");
  
 antispam(client, {
@@ -3481,8 +3398,7 @@ client.on('message',async message => {
 });
 
 client.on("message", msg => {
-    var prefix = '-'
-  if(msg.content === prefix + "id") {
+     if(message.content.startsWith(prefix + "id")) {
       const embed = new Discord.RichEmbed();
   embed.addField("🔱|Username", `${msg.author.username}#${msg.author.discriminator}`, true)
           .addField("🆔|iD", `${msg.author.id}`, true)
