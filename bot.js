@@ -3480,4 +3480,25 @@ client.on('message',async message => {
   }
 });
 
+client.on("message", msg => {
+    var prefix = '-'
+  if(msg.content === prefix + "id") {
+      const embed = new Discord.RichEmbed();
+  embed.addField("🔱|Username", `${msg.author.username}#${msg.author.discriminator}`, true)
+          .addField("🆔|iD", `${msg.author.id}`, true)
+          .setColor("RANDOM")
+          .setFooter(msg.author.username , msg.author.avatarURL)
+          .setThumbnail(`${msg.author.avatarURL}`)
+          .setTimestamp()
+          .setURL(`${msg.author.avatarURL}`)
+          .addField('📛|Status', `${msg.author.presence.status.toUpperCase()}`, true)
+          .addField('🎲|Playing', `${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name}`, true)
+          .addField('🏅|Roles', `${msg.member.roles.filter(r => r.name).size}`, true)
+          .addField('📛|Discriminator', `${msg.discriminator}`, true)
+          .addField('📅|Created At', `${msg.createdAt}`,true)
+          .addField('🤖|Bot', `${msg.author.bot.toString().toUpperCase()}`, true);
+      msg.channel.send({embed: embed})
+  }
+});
+
 client.login(process.env.BOT_TOKEN)
