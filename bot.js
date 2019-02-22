@@ -3496,7 +3496,7 @@ client.on('message', msg => {
 
 
 client.on('message', msg => {
-    if(msg.content === '-setPlaying')
+    if(msg.content === '-setPlaying -help I -invite')
     msg.reply('تم تغير البلاينق بنجاح :white_check_mark:')
   });
 
