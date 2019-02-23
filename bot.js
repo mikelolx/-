@@ -3432,73 +3432,31 @@ client.on('typingStart', (ch, user) => {
     }
 });
 
-client.on('message', message => {
-    let argresult = message.content.split(` `).slice(1).join(' ');
-    if (message.content.startsWith(prefix + 'setStreaming')) {
-      if (!devs.includes(message.author.id)) return message.channel.send("<@429972030092476437> only this guy can do restart the bot so don't try again :wink:.");
-      message.delete();
-      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
+const adminprefix = "-";//Fras
+const devs = ['ايدي خويك','545245659834351634'];//Fras
+client.on('message', message => {//Fras
+  var argresult = message.content.split(` `).slice(1).join(' ');//Fras
+    if (!devs.includes(message.author.id)) return;//Fras
+    
+if (message.content.startsWith(adminprefix + 'play')) {//Fras
+  client.user.setGame(argresult);//Fras
+    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)//Fras
+} else //Fras
+  if (message.content.startsWith(adminprefix + 'name')) {//Fras
+client.user.setUsername(argresult).then//Fras
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)//Fras
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");//Fras
+} else//Fras
+  if (message.content.startsWith(adminprefix + 'avatar')) {//Fras
+client.user.setAvatar(argresult);//Fras
+  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);//Fras
+      } else    //Fras 
+if (message.content.startsWith(adminprefix + 'streaming')) {//Fras
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");//Fras
+    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)//Fras
+}//Fras
+});//Fras
 
-    } else if(message.content.startsWith(prefix + 'setWatching')) {
-        client.user.setActivity(argresult,{type: 'WATCHING'});
-
-      } else if(message.content.startsWith(prefix + 'setListening')) {
-        client.user.setActivity(argresult,{type: 'LISTENING'});
-
-      } else if(message.content.startsWith(prefix + 'setPlaying')) {
-        client.user.setActivity(argresult,{type: 'PLAYING'});
-
-      } else if(message.content.startsWith(prefix + 'setName')) {
-        client.user.setUsername(argresult);
-
-      } else if(message.content.startsWith(prefix + 'setAvatar')) {
-        client.user.setAvatar(argresult);
-
-
-      } else if(message.content.startsWith(prefix + 'setStatus')) {
-        if(!argresult) return message.channel.send('`online`, `DND(Do not Distrub),` `idle`, `invisible(Offline)` :notes: أختر أحد الحالات');
-        client.user.setStatus(argresult);
-
-
-    }
-
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setWatching')
-    msg.reply('تم تغير الواتشنق بنجاح :white_check_mark:')
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setListening')
-    msg.reply('تم تغير الاستماع بنجاح :white_check_mark:')
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setPlaying -help I -invite')
-    msg.reply('تم تغير البلاينق بنجاح :white_check_mark:')
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setName')
-    msg.reply('تم تغير اسم البوت بنجاح :white_check_mark:')
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setAvatar')
-    msg.reply('تم تغير صورة البوت بنجاح :white_check_mark:')
-  });
-
-
-client.on('message', msg => {
-    if(msg.content === '-setStatus')
-    msg.reply('تم ا تغير حال البوت بنجاح :white_check_mark:')
-  });
 
 client.on('message', async msg => { 
 	if (msg.author.bot) return undefined;
