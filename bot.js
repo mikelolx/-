@@ -3818,7 +3818,7 @@ client.on("message", message =>{//Baron#1500
 //السطر ال تحت لمنع تكرار انشاء الرتب لو عاوز تغير اسم الرتب غيرها وحط اسمها فى السطر ال تحت كمان علشان ميحصلش سبام
 let roles = message.guild.roles.find(all=> all.name === "⇁『Owner 』‏‏༄  ❥", "⇁『Co-Owner』‏‏༄  ❥", "⇁『Admin 』‏‏༄  ❥", "⇁『SrMod 』‏‏༄  ❥", "⇁『Mod 』‏‏༄  ❥",
 "⇁『youtuber 』‏‏༄  ❥", "⇁『Member 』‏‏༄  ❥");//Baron#1500
-if(message.content.startsWith(prefix + "makeroles")) {//Baron#1500
+if(message.content.startsWith(prefix + "roles")) {//Baron#1500
   if(message.author.bot) return;//Baron#1500
   if(roles) return message.reply('**الرتب موجوده بالفعل**')//Baron#1500
   //دى بقا الرتب ال انت عاوزو يعملها
