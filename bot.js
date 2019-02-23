@@ -3759,7 +3759,7 @@ client.on('message', message => {
     }
 });
 
-const bannedwords = [    "كل زق",    "يابن الحرام",    "كل خرا",    "يا وسخ",    "كلب",    "كسمك"   "يابن الجذمة", ];
+const bannedwords = [    "كل زق",    "كل خرا",    "يا وسخ",    "كلب",    "كسمك"   "يابن الجذمة", ];
 
 client.on('message',  message => {
   if(bannedwords.some(word => message.content.includes(word))) {
