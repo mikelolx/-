@@ -3436,7 +3436,7 @@ client.on('message', message => {//Fras
   var argresult = message.content.split(` `).slice(1).join(' ');//Fras
     if (!devs.includes(message.author.id)) return;//Fras
     
-if (message.content.startsWith(adminprefix + 'play')) {//Fras
+if (message.content.startsWith(adminprefix + 'playing')) {//Fras
   client.user.setGame(argresult);//Fras
     message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)//Fras
 } else //Fras
