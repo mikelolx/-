@@ -3759,4 +3759,13 @@ client.on('message', message => {
     }
 });
 
+const bannedwords = [    "كل زق",    "يابن الحرام",    "كل خرا",    "يا وسخ",    "كلب",    "كسمك"   "يابن الجذمة", ];
+
+client.on('message',  message => {
+  if(bannedwords.some(word => message.content.includes(word))) {
+    message.delete()
+    message.reply(" احترم نفسك , يمنع السب تمامنا هنا  ").then(msg => {msg.delete(5000)});;
+  };
+});
+
 client.login(process.env.BOT_TOKEN)
