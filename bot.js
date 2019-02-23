@@ -256,7 +256,7 @@ message.channel.sendEmbed(embed)
 });
 
  client.on('message', message => {
-    if (message.content === ('&bot')) {
+    if (message.content === ('-bot')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
