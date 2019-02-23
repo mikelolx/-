@@ -256,26 +256,23 @@ message.channel.sendEmbed(embed)
 });
 
  client.on('message', message => {
-    if (message.content.startsWith(prefix + "bot")) {
+    if (message.content === ('&bot')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
             .setThumbnail(client.user.avatarURL)
             .setColor('RANDOM')
-            .setTitle('``معلومات ArabBot`` ')
-            .addField('``البنق``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
-            .addField('``رامات``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
-            .addField('``السيرفرات``', [client.guilds.size], true)
-            .addField('``الرومات``' , `[ ${client.channels.size} ]` , true)
-            .addField('``الاعبين``' ,`[ ${client.users.size} ]` , true)
-            .addField('``اسمي هو``' , `[ ${client.user.tag} ]` , true)
-            .addField('``ايدي حقي``' , `[ ${client.user.id} ]` , true)
-			      .addField('``البريفكس جقي``' , `[ - ]` , true)
-			      .addField('``لغتي``' , `[ Java Script ]` , true)
-			      .setFooter('By | Friendy')
+            .addField('**Bot Ping**🚀 :' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('**Servers**📚 :', [client.guilds.size], true)
+            .addField('**Channels**📝 :' , `[ ${client.channels.size} ]` , true)
+            .addField('**Users**🔮 :' ,`[ ${client.users.size} ]` , true)
+            .addField('**Bot Name**🔰 :' , `[ ${client.user.tag} ]` , true)
+            .addField('**Bot Owner**👑 :' , `[@**Zinx I Friendly**#7450 ]` , true)
+            .setFooter(message.author.username, message.author.avatarURL)
     })
 }
-});
+});//toxic codes
+
  client.on('message', message => {
               if (!message.channel.guild) return;
       if(message.content =='-count')
@@ -4251,5 +4248,41 @@ client.on('message', message => {    ///Toxic Codes
   message.channel.sendEmbed(embed);   ///Toxic Codes
     }  
 });///Toxic Codes
+
+client.on('message', message => { ///Toxic Codes
+    if (message.author.bot) return;
+    if (message.content.indexOf('-un') === 0) {
+        var text = message.content.substring(1);
+        
+        var reversed = '';
+        var i = text.length;
+        
+        while (i > 0) {
+            reversed += text.substring(i - 1, i);
+            i--;
+        }
+        message.reply(reversed);
+    }
+});
+
+client.on('message', message => {       ///Toxic Codes
+    if (message.content === "-id") {    ///Toxic Codes
+    var year = message.createdAt.getFullYear()
+    var month = message.createdAt.getMonth()
+    var day = message.createdAt.getDate()
+         let embed = new Discord.RichEmbed()
+         .setAuthor(message.author.username, message.author.avatarURL)
+      .setThumbnail(message.author.avatarURL)
+        .addField("**اسمك:**",  '**[ ' + `${message.author.username}` + ' ]**')
+          .setThumbnail(message.author.avatarURL)
+                   .setFooter(`${message.author.username}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+      .addField('الكود الخاص بك:', message.author.discriminator)
+      .addField("**عدد الايام منذ افتتاح حسابك:**", message.author.createdAt.getDate())
+        .addField("** تم افتتاح حسابك عام:**", message.createdAt.getFullYear())
+            .addField("** عدد الشهور منذ افتتاح حسابك:**", message.createdAt.getMonth())
+    
+      message.channel.send({embed});
+        }
+    }); ///Toxic Codes
 
 client.login(process.env.BOT_TOKEN)
