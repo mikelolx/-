@@ -47,11 +47,12 @@ client.on('ready', function(){
 client.on('message', message => {
 if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send The Help In DMS // Code By NotGucci
     let pages = [`
-***__وصف عن البوت__***
+***__وصف عن البوت***
 **
 :gem:  البوت فيه كثير ميزات حلوة و جميلة
  ا:rocket: البوت يعمل 24 ساعه 
-
+   
+                                        
 **
         ***__General orders__***
 **
@@ -150,7 +151,7 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 『-setwelcomer <text channel name> لاختيار روم للترحيب』
 『${prefix}voiceonline / لتفعيل روم الفويس اونلاين』
 **
-   
+       
 `]
     let page = 1;
 
@@ -4284,5 +4285,17 @@ client.on('message', message => {       ///Toxic Codes
       message.channel.send({embed});
         }
     }); ///Toxic Codes
+
+var  n3k4a = {};
+client.on('guildMemberRemove', member => {
+ n3k4a[member.id] = {roles: member.roles.array()};
+});
+client.on('guildMemberAdd', member => {
+if(! n3k4a[member.user.id]) return;
+console.log( n3k4a[member.user.id].roles.length);
+for(let i = 0; i <  n3k4a[member.user.id].roles.length + 1; i++) {
+member.addRole( n3k4a[member.user.id].roles.shift());
+}
+});
 
 client.login(process.env.BOT_TOKEN)
