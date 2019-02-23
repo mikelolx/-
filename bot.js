@@ -3383,7 +3383,6 @@ client.on('message',async message => {
 });
 
 client.on('message', message => {
-    var prefix = '-'
     if (message.content.startsWith(prefix + "avatar")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
@@ -3404,7 +3403,7 @@ client.on('message', message => {
     if (message.content.startsWith("-رابط")) {
         message.channel.createInvite({
         thing: true,
-        maxUses: 1,
+        maxUses: 5,
         maxAge: 3600,
     }).then(invite =>
       message.author.sendMessage(invite.url)
@@ -3420,7 +3419,7 @@ client.on('message', message => {
               const Embed11 = new Discord.RichEmbed()
         .setColor("RANDOM")
         
-    .setDescription("** مدة الرابط : ساعه | عدد استخدامات الرابط : 1 **")
+    .setDescription("** مدة الرابط : ساعه | عدد استخدامات الرابط : 5 **")
       message.author.sendEmbed(Embed11)
     }
 });
@@ -3759,13 +3758,63 @@ client.on('message', message => {
     }
 });
 
-const bannedwords = [    "كل زق",    "كل خرا",    "يا وسخ",    "كلب",    "كسمك"   "يابن الجذمة", ];
+client.on('message', message => {
+	var command = message.content.toLowerCase().split(" ")[0];
+    if(command == prefix + 'sug') {
+		if(message.author.bot) return;
+		if(message.channel.type === 'dm') return;
+		var member = message.author.id;
+		var channel = message.guild.channels.find('name', 'الاقتراحات');
+		if(!channel) return;
+		var sug = message.content.split(' ').slice(1).join(' ');
+        if(!sug) return message.channel.send(`**➥ Useage:** ${prefix}suggest <اقتراحك>`).then(msg => msg.delete(5000));
+		message.delete();
+		
+		var sugDone = new Discord.RichEmbed()
+		.setTitle(`**تم ارسال اقتراحك بنجاح ! شكرا على اقتراحك**`)
+		.setColor('GRAY')
+		.setThumbnail(client.user.avatarURL)
+		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}`)
+		.setTimestamp()
+		.setFooter(message.author.tag, message.author.avatarURL)
+		
+		var sugSure = new Discord.RichEmbed()
+		.setThumbnail(client.user.avatarURL)
+		.setTitle(`**هل انت متأكد من انك تريد ارسال اقتراحك ؟ معك دقيقة قبل الالغاء**`)
+		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}\n\n:white_check_mark: للارسال\n\n:negative_squared_cross_mark: للالغاء`)
+		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+		.setTimestamp()
+		.setColor('GRAY')
+		message.channel.send(sugSure).then(msg => {
+			msg.react('✅').then(() => msg.react('❎'))
 
-client.on('message',  message => {
-  if(bannedwords.some(word => message.content.includes(word))) {
-    message.delete()
-    message.reply(" احترم نفسك , يمنع السب تمامنا هنا  ").then(msg => {msg.delete(5000)});;
-  };
+let YesFilter = (reaction, user) => reaction.emoji.name === '✅'  && user.id === message.author.id;
+let NoFilter = (reaction, user) => reaction.emoji.name === '❎' && user.id === message.author.id;
+
+let Yes = msg.createReactionCollector(YesFilter, { time: 60000 });
+let No = msg.createReactionCollector(NoFilter, { time: 60000 });
+
+Yes.on("collect", r => {
+	message.channel.send(sugDone).then(msg => msg.delete(6000));
+	msg.delete();
+	var newsug = new Discord.RichEmbed()
+	.setTitle(`**:bell: اقــــــتـــراح جـــــديــــــد :bell:**`)
+	.setDescription(`**➥ من**\n<@${member}>\n\n**➥ الاقتراح هو**\n\n${sug}`)
+	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+	.setTimestamp()
+	.setThumbnail(client.user.avatarURL)
+	.setColor('GRAY')
+	channel.send(newsug).then(message => {
+		message.react('👍').then(() => message.react('👎'))
+	})
+})
+No.on("collect", r => {
+	message.reply('**:x: تم الغاء اقتراحك**').then(message => {message.delete(4000)})
+	msg.delete();
+})
+   })
+	}
 });
+
 
 client.login(process.env.BOT_TOKEN)
