@@ -4262,7 +4262,7 @@ client.on('message',async message => {
 if(!message.channel.guild) return message.reply(' ');
  
  
-  let submite = message.guild.channels.find(`name`, "اسم روم الي توصل اليه ليبون يشترون رتبة");
+  let submite = message.guild.channels.find(`shop`, "اسم روم الي توصل اليه ليبون يشترون رتبة");
  
   if(!submite) return message.channel.send("لايوجد روم خاص للي يوصل الشراء اليه :x:");
   let filter = m => m.author.id === message.author.id;
