@@ -5201,7 +5201,7 @@ const Ex = [
 ]
    client.on('message', message => {
        if (message.author.bot) return;
- if (message.content.startsWith('-الحوت الازرق')
+ if (message.content.startsWith('-الحوت الازرق')) {
      if(!message.channel.guild) return message.reply('** هذا الأمر فقط للخوادم **');
   var client= new Discord.RichEmbed()
   .setTitle("** __لعبه سيرفر اكسترا__ **")
